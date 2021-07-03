@@ -3,7 +3,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 from django_plotly_dash import DjangoDash
 
-from .stock_app import *
+
 
 app = DjangoDash('SimpleExample2')   # replaces dash.Dash
 
