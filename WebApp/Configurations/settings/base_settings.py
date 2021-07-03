@@ -187,8 +187,8 @@ STATIC_URL = '/static/'
 create_directory( os.path.join(BASE_DIR, 'static_cdn', 'media_root'))
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'ClientApp/distro/'),
-    os.path.join(BASE_DIR, 'ClientApp/distro/dist/', 'static'),
+    # os.path.join(BASE_DIR, 'ClientApp/distro/'),
+    # os.path.join(BASE_DIR, 'ClientApp/distro/dist/', 'static'),
     os.path.join(BASE_DIR, 'static_cdn', 'media_root'),
 )
 
