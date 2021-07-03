@@ -9,7 +9,7 @@
    https://github.com/Kumbirai-Bodzo/vggkbs
 
 3. Heroku Link
-   https://docking-vggkbs.herokuapp.com/
+   https://docking-stock-prediction.herokuapp.com/
 
 4. video Link
    https://drive.google.com/file/d/1grI7PPMAH8CKGKwVN6-PQKshUkDJ6DSF/view?usp=sharing

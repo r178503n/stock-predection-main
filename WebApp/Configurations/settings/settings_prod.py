@@ -38,7 +38,7 @@ except Exception:
     pass
     # logging.error('<------------ THIS ENVIRONMENT IS NOT AVAILABLE ------------>')
 
-CUSTOM_DOMAIN_NAME = 'https://docking-vggkbs.herokuapp.com' 
+CUSTOM_DOMAIN_NAME = 'https://docking-stock-prediction.herokuapp.com' 
 
 
 ALLOWED_HOSTS = ['*', CUSTOM_DOMAIN_NAME]
