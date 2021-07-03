@@ -1,0 +1,7 @@
+*/.venv
+.venv/
+.git
+static_cdn/static_root
+*/distro
+
+

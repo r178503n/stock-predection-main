@@ -1,0 +1,34 @@
+{% load static %}
+
+{% load render_bundle from webpack_loader %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <base href="/">
+    <title>VGG MODEL</title>
+    <link rel="icon" type="image/x-icon" href="static/images/ico.svg">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Vgg model Starter">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+
+<body>
+    <base href="/">
+
+
+
+    <app-root></app-root>
+</body>
+
+{% render_bundle 'styles' %}
+{% render_bundle 'runtime' %}
+{% render_bundle 'polyfills' %}
+{% render_bundle 'main' %}
+{% render_bundle 'scripts' %}
+
+</html>

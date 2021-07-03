@@ -1,0 +1,115 @@
+{
+    "python.pipenvPath": "WebApp\\.venv\\Scripts\\", // if using pipenv
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "python.autoComplete.extraPaths": [
+        "${workspaceFolder}/WebApp"
+    ],
+    //  "python.formatting.autopep8Path": "VictoriaBookings\\.venv\\Scripts\\pylint",
+    "python.formatting.autopep8Args": [
+        "--max-line-length",
+        "200",
+        "--aggressive",
+    ],
+    // "python.autoComplete.extraPaths": [
+    //     "./VictoriaBookings" autopep8
+    // ],
+    "python.linting.lintOnSave": true,
+    "python.linting.enabled": true,
+    // if using pylint
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintPath": "${workspaceFolder}\\WebApp\\.venv\\Scripts\\pylint",
+    "python.linting.pylintArgs": [
+        "--load-plugins",
+        "pylint_django", // only if you are using django framework
+        "--enable=W0614",
+        "--enable= W0611"
+    ],
+    // if using flake8 (uncomment below lines and comment above block of settings of pylint
+    // "python.linting.pylintEnabled": false,
+    // "python.linting.flake8Enabled": true,
+    // "python.linting.flake8Path": "<your-env-path>/bin/flake8",
+    // "python.linting.flake8Args": [
+    //   "--max-line-length=130"
+    // ],
+    // to enable sort imports on save
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
+    // to add environment vars while opening a new vscode terminal (name:val)
+    "terminal.integrated.env.windows": {
+        "DJANGO_ENV": "DEV"
+    },
+    "[python]": {
+        "editor.tabSize": 4,
+    },
+    "actionButtons": {
+        "defaultColor": "#ff0034", // Can also use string color names.
+        "loadNpmCommands": false, // Disables automatic generation of actions for npm commands.
+        "reloadButton": "reload ♻️", // Custom reload button text or icon (default ↻). null value enables automatic reload on configuration change
+        "commands": [
+            {
+                "cwd": "${workspaceFolder}/WebApp/ClientApp/", // Terminal initial folder ${workspaceFolder} and os user home as defaults
+                "name": "Run Angular",
+                "color": "orange",
+                "singleInstance": true,
+                "command": "ng serve --hmr", // This is executed in the terminal.
+            },
+            {
+                "cwd": "${workspaceFolder}/WebApp/ClientApp/", // Terminal initial folder ${workspaceFolder} and os user home as defaults
+                "name": "Build Angular",
+                "color": "orange",
+                "singleInstance": true,
+                "command": "ng build --prod", // This is executed in the terminal.
+            },
+            {
+                "cwd": "${workspaceFolder}/WebApp/", // Terminal initial folder ${workspaceFolder} and os user home as defaults
+                "name": "Run Django Server",
+                "color": "white",
+                "singleInstance": true,
+                "command": "manage.py runserver", // This is executed in the terminal.
+            },
+            {
+                "cwd": "${workspaceFolder}", // Terminal initial folder ${workspaceFolder} and os user home as defaults
+                "name": "Run Docker",
+                "color": "white",
+                "singleInstance": true,
+                "command": "docker-compose down & docker-compose up --build", // This is executed in the terminal.
+            },
+            {
+                "cwd": "${workspaceFolder}", // Terminal initial folder ${workspaceFolder} and os user home as defaults
+                "name": "Heroku Publish",
+                "color": "white",
+                "singleInstance": true,
+                "command": "git push heroku main", // This is executed in the terminal.
+            },
+        ]
+    },
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}\\**",
+        "${workspaceFolder}\\WebApp"
+    ],
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true,
+        "**/../VictoriaBookings": true
+    },
+    "python.analysis.completeFunctionParens": true,
+    "python.analysis.diagnosticMode": "workspace",
+    "eslint.format.enable": true,
+    "python.formatting.autopep8Path": "",
+    "python.formatting.blackPath": "",
+    "python.linting.mypyArgs": [
+        "--ignore-missing-imports",
+        "--show-column-numbers",
+        "--follow-imports=silent"
+    ],
+    "python.languageServer": "Pylance",
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingImports": "error",
+        "reportUndefinedVariable": "error"
+    },
+    "python.pythonPath": "h:\\School\\StockPrediction\\WebApp\\.venv\\Scripts\\python.exe",
+}

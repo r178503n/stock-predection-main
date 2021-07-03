@@ -1,0 +1,64 @@
+### Stage 1: build ###
+#FROM node:15.0.1-alpine3.12 as builder
+#FROM node:14.15.0-alpine3.12 as builder
+FROM node:16-alpine3.11 as builder
+
+# Set working directory.
+RUN mkdir /app
+WORKDIR /app
+
+# Copy app dependencies.
+COPY ./ClientApp/package.json /app/
+COPY ./ClientApp/package-lock.json /app/
+
+# Install app dependencies. --force --legacy-peer-deps
+RUN npm install 
+# --legacy-peer-deps
+#RUN npm audit fix 
+
+# Copy app files.
+COPY ./ClientApp /app/
+
+# Default build configuration.
+ARG configuration=production
+
+# Build app
+RUN npm run build --prod=true
+
+###### Backend
+
+FROM python:3.8.5
+
+ENV PYTHONUNBUFFERED 1
+RUN mkdir /app
+WORKDIR /app
+COPY requirements.txt /app/
+
+RUN apt-get update && apt-get install -y python3-opencv
+RUN pip install opencv-python
+
+RUN pip install dj-database-url
+RUN pip install -r requirements.txt
+
+COPY . /app/
+
+# COPY [^ClientApp]* /app/
+
+# RUN rm -rf ClientApp/
+RUN rm -rf webpack-stats-angular.json
+
+COPY --from=builder /app/webpack-stats-angular.json ClientApp/
+COPY --from=builder /app/distro/dist/ ClientApp/distro/dist
+
+
+# RUN python3 manage.py migrate  --settings=Configurations.settings_prod
+RUN python3 manage.py collectstatic --settings=Configurations.settings.settings_prod
+
+EXPOSE 5432
+EXPOSE 8000
+
+
+
+
+# RUN apt-get update
+# RUN apt install -y libgl1-mesa-glx
