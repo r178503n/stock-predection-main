@@ -10,12 +10,16 @@ class PredictModel:
     new_dataset = pd.DataFrame()
     saved_model_path = None
     data_to_predict= None
+    # results
+    train = None
+    valid = None
 
     new_data = None
     dataset = None
 
 
     def __init__(self, data,trained_name) -> None:
+        print('this is init')
         self.data_to_predict = data
         self.saved_model_path = settings.MEDIA_ROOT+'/{}.h5'.format(trained_name)
 
@@ -86,7 +90,14 @@ class PredictModel:
         # train=new_data[:987]
         valid=self.new_data[987:]
         valid['Predictions']=closing_price
-        print(valid)
+   
+
+        self.valid = valid
+        self.train = train
+      
+    def get_results(self)->dict:
+
+        return {'train':self.train, 'valid':self.valid}
 
 
 

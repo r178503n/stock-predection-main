@@ -6,10 +6,10 @@ from django.core.mail import send_mail
 from django.urls import include, path, re_path
 from django.views.generic import RedirectView, TemplateView
 
-from . import  views
+from . import views
 
 urlpatterns = [
-  path('', views.index, name='intelligence'),
-
+  path('', views.index, name='index'),
+ path('<name>', views.predictionView, name='name'),
 ]
 

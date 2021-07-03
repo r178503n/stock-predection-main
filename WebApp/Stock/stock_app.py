@@ -1,14 +1,10 @@
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-import numpy as np
-import pandas as pd
 import plotly.graph_objs as go
 from dash.dependencies import Input, Output
 from django.conf import settings
 from django_plotly_dash import DjangoDash
-from keras.models import load_model
-from sklearn.preprocessing import MinMaxScaler
 
 # app = dash.Dash()
 app = DjangoDash('SimpleExample') 
@@ -26,6 +22,10 @@ Front end dashboard app with flask
 
 '''
 def predictions()->dict:
+    import numpy as np
+    import pandas as pd
+    from keras.models import load_model
+    from sklearn.preprocessing import MinMaxScaler
     scaler=MinMaxScaler(feature_range=(0,1))
 
     df_nse = pd.read_csv(settings.MEDIA_ROOT+"/NSE-TATAGLOBAL.csv")
@@ -86,17 +86,19 @@ def predictions()->dict:
 
 
 
-def get_dashboard():
-    p = predictions()
-    train = p['train']
-    valid = p['valid']
+def get_dashboard(stock_name,context):
+    context = predictions()
+    train = context['train']
+    valid = context['valid']
+    
+
     app.layout = html.Div([
    
     html.H1("Stock Price Analysis Dashboard", style={"textAlign": "center"}),
    
     dcc.Tabs(id="tabs", children=[
        
-        dcc.Tab(label='NSE-TATAGLOBAL Stock Data',children=[
+        dcc.Tab(label= stock_name+ 'Stock Data',children=[
 			html.Div([
 				html.H2("Actual closing price",style={"textAlign": "center"}),
 				dcc.Graph(

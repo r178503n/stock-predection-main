@@ -1,5 +1,20 @@
-<h1>App running...</h1>
+{%extends 'header.html'%}
+{% load static %}
 
-{%load plotly_dash%}
+{% block body %}
+<h3>{{context}}</h3>
 
-{%plotly_app name="SimpleExample" ratio=1%}
+{%for value in list%}
+
+<a href="{% url 'name' value %}">
+    <h2>{{value}}</h2>
+</a>
+
+{%empty%}
+<h5>empty list</h5>
+
+
+{%endfor%}
+
+
+{%endblock%}
