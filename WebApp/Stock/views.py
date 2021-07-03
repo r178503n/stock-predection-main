@@ -9,39 +9,53 @@ from .stock_app import *
 
 # Create your views here.
 
+stocks = [
+          {'key':'NGM', 'name':'NSE-TATAGLOBAL'},
+          {'key':'MSFT','name':'Microsoft'},
+            {'key':'NMS','name':'Facebook'}
+]
 
 def index(request):
     context = dict({'fdsf':'fds'})
     list = ['NSE-TATAGLOBAL','two','three']
-    context.setdefault('list',list)
+    context.setdefault('stock_list',stocks)
     return render(request,'index.html', context)
 
 def predictionView(request,name):
+    import yfinance as yf
+    data = yf.download(tickers=name, period='6d', interval='1m')
+
+    print(data)
     print(name)
-    predict = PredictModel(data=settings.MEDIA_ROOT+'/NSE-TATAGLOBAL.csv', trained_name='trained_model')
-    #valid = predict.get_results()['valid']
-    #train = predict.get_results()['train']
+    # settings.MEDIA_ROOT+'/NSE-TATAGLOBAL.csv'
+
+    predict = PredictModel(data=data, trained_name=name+'_trained_model')
     predict.clean()
     predict.predict()
-    # print( predict.get_results())
+    
+    get_dashboard(stock_name = name, context= predict.get_results())
+
 
     context = dict()
-    
     context.setdefault('name',name)
-    get_dashboard(stock_name = name, context={})
     
     return render(request,'predicted.html', context)
 
-def trainView(request,name):
+def trainView(request, name):
+    import yfinance as yf
+    data = yf.download(tickers=name, period='5d', interval='5m')
+    #settings.MEDIA_ROOT+'/NSE-TATAGLOBAL.csv
 
-    #training = TrainModel(data=settings.MEDIA_ROOT+'/NSE-TATAGLOBAL.csv', train_name='trained_model')
-    #training.clean()
-    #training.train()
+    training = TrainModel(data=data, train_name=name+'_trained_model')
+    training.clean()
+    training.train()
 
     context = dict()
+    print(name)
     
     context.setdefault('name',name)
-    get_dashboard(stock_name = name)
+    # get_dashboard(stock_name = name)
     
-    return render(request,'predicted.html', context)
+    # return render(request,'index.html', context)
+    return index(request)
 

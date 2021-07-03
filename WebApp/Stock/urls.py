@@ -10,6 +10,7 @@ from . import views
 
 urlpatterns = [
   path('', views.index, name='index'),
- path('<name>', views.predictionView, name='name'),
+ path('predict/<name>', views.predictionView, name='predict'),
+  path('train/<name>', views.trainView, name='train'),
 ]
 

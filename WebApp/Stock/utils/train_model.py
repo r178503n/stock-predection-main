@@ -17,8 +17,10 @@ class TrainModel:
     def __init__(self, data,train_name) -> None:
         self.data_to_train = data
         self.saved_model_path = settings.MEDIA_ROOT+'/{}.h5'.format(train_name)
-
-        self.get_data()
+        try:
+            self.get_data()
+        except:
+            self.df = data
         super().__init__()
 
     def get_data(self): 
@@ -30,43 +32,52 @@ class TrainModel:
         print('data read success')
     
     def clean(self):
-        try:
-            self.df["Date"]=pd.to_datetime(self.df.Date,format="%Y-%m-%d")
-            pass
-        except:
-            self.df["DateTime"]=pd.to_datetime(self.df.Date,format="%Y-%m-%d")
+        print('__________________')
+        print('cleaning')
+        # try:
+        #     self.df["Datetimetime"]=pd.to_Datetimetime(self.df.Datetimetime,format="%Y-%m-%d")
+        #     pass
+        # except:
+        #     self.df["Datetimetime"]=pd.to_Datetimetime(self.df.Datetimetime,format="%Y-%m-%d")
+        print(self.df)
 
-        self.df["DateTime"]=pd.to_datetime(self.df.Date,format="%Y-%m-%d")
-        self.df.index=self.df['Date']
+        self.df["Datetime"]=pd.to_datetime(self.df.index,format="%Y-%m-%d")
+        #self.df.index=self.df['Datetime']
 
         data=self.df.sort_index(ascending=True,axis=0)
 
         # taking wanted features only
-        new_dataset=pd.DataFrame(index=range(0,len(self.df)),columns=['Date','Close'])
+        new_dataset=pd.DataFrame(index=range(0,len(self.df)),columns=['Datetime','Close'])
 
         for i in range(0,len(data)):
-            new_dataset["Date"][i]=data['Date'][i]
+            new_dataset["Datetime"][i]=data['Datetime'][i]
             new_dataset["Close"][i]=data["Close"][i]
             
 
-        new_dataset.index=new_dataset.Date
-        new_dataset.drop("Date",axis=1,inplace=True)
+        new_dataset.index=new_dataset.Datetime
+        new_dataset.drop("Datetime",axis=1,inplace=True)
         # set global variables
         self.new_dataset = new_dataset
         self.final_dataset=new_dataset.values
+        print('finished cleaning')
+
+        print('__________________')
 
 
 
     def train(self):
+        print('__________________')
+        print('training')
         import numpy as np
         from keras.layers import LSTM, Dense, Dropout
         from keras.models import Sequential
         from sklearn.preprocessing import MinMaxScaler
+        train_percentage = int(len(self.df)*(30/100))
 
         # final_dataset=new_dataset.values
         # training splits
-        train_data=self.final_dataset[0:987,:]
-        valid_data=self.final_dataset[987:,:]
+        train_data=self.final_dataset[0:train_percentage,:]
+        valid_data=self.final_dataset[train_percentage:,:]
 
         # scaling data
         scaler=MinMaxScaler(feature_range=(0,1))
@@ -111,9 +122,13 @@ class TrainModel:
         # saving trained model
         lstm_model.save(self.saved_model_path)
 
-        train_data=self.new_dataset[:987]
-        valid_data=self.new_dataset[987:]
+        train_data=self.new_dataset[:train_percentage]
+        valid_data=self.new_dataset[train_percentage:]
         valid_data['Predictions']=predicted_closing_price
+
+        print('finished training')
+
+        print('__________________')
         return valid_data
     def get_valid_data(self):
         return self.valid_data

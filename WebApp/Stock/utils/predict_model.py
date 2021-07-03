@@ -26,28 +26,40 @@ class PredictModel:
         self.get_data()
         super().__init__()
 
-    def get_data(self): 
-        self.df=pd.read_csv(self.data_to_predict)
+    def get_data(self):
+        try:
+            self.df=pd.read_csv(self.data_to_predict)
+        except:
+            print('________________________')
+            print('reading remote')
+            self.df = self.data_to_predict
+        
+
 
         if self.df.empty:
             raise FileExistsError('File does not exist')
 
         print('data read success')
     def clean(self):
+        # try:
+        #     self.df.rename(columns = {'Datetimetime','Datetime'})
+        # except:
+        #     pass
+        print(self.df)
         
-        self.df["Date"]=pd.to_datetime(self.df.Date,format="%Y-%m-%d")
-        self.df.index=self.df['Date']
+        self.df["Datetime"]=pd.to_datetime(self.df.index,format="%Y-%m-%d")
+        #self.df.index=self.df['Datetime']
 
 
         data=self.df.sort_index(ascending=True,axis=0)
-        new_data=pd.DataFrame(index=range(0,len(self.df)),columns=['Date','Close'])
+        new_data=pd.DataFrame(index=range(0,len(self.df)),columns=['Datetime','Close'])
 
         for i in range(0,len(data)):
-            new_data["Date"][i]=data['Date'][i]
+            new_data["Datetime"][i]=data['Datetime'][i]
             new_data["Close"][i]=data["Close"][i]
 
-        new_data.index=new_data.Date
-        new_data.drop("Date",axis=1,inplace=True)
+        new_data.index=new_data.Datetime
+        new_data.drop("Datetime",axis=1,inplace=True)
         self.new_data = new_data
 
         self.dataset=new_data.values
@@ -56,13 +68,14 @@ class PredictModel:
         import numpy as np
         from keras.models import load_model
         from sklearn.preprocessing import MinMaxScaler
+        train_percentage = int(len(self.df)*(20/100))
 
         scaler= MinMaxScaler(feature_range=(0,1))
         scaled_data=scaler.fit_transform(self.dataset)
         x_train,y_train=[],[]
 
-        train=self.dataset[0:987,:]
-        valid=self.dataset[987:,:]
+        train=self.dataset[0:train_percentage,:]
+        valid=self.dataset[train_percentage:,:]
 
         for i in range(60,len(train)):
             x_train.append(scaled_data[i-60:i,0])
@@ -87,15 +100,15 @@ class PredictModel:
         closing_price=model.predict(X_test)
         closing_price=scaler.inverse_transform(closing_price)
 
-        # train=new_data[:987]
-        valid=self.new_data[987:]
+        train=self.new_data[:train_percentage]
+        valid=self.new_data[train_percentage:]
         valid['Predictions']=closing_price
    
 
         self.valid = valid
         self.train = train
       
-    def get_results(self)->dict:
+    def get_results(self):
 
         return {'train':self.train, 'valid':self.valid}
 
