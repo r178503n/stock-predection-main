@@ -15,9 +15,11 @@ from datetime import timedelta
 
 from corsheaders.defaults import default_headers
 from django.conf import settings
-from Intelligence.utils import create_directory
 
 from .mini_settings.rest_framework_settings import *
+
+# from Intelligence.utils import create_directory
+
 
 # Preferances
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -184,7 +186,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_URL = '/static/'
 
 
-create_directory( os.path.join(BASE_DIR, 'static_cdn', 'media_root'))
+# create_directory( os.path.join(BASE_DIR, 'static_cdn', 'media_root'))
 
 STATICFILES_DIRS = (
     # os.path.join(BASE_DIR, 'ClientApp/distro/'),
