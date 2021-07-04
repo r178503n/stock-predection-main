@@ -5,43 +5,63 @@
 <!-- <h3>{{stock_list}}</h3> -->
 
 
+<h1>{{status}}</h1>
 
-<div class="row flex-cente mt-4">
 
-    <div class="col-md-9 m-auto ">
-        <ul class="list-group ">
-            {%for value in stock_list%}
-            <li class="list-group-item hoverable ">
-                <span class="float-left h5-responsive">
-                    {{value.name}}
-                </span>
-                <div class="float-right">
-                    <a class="btn btn-sm btn-primary shadow-none rounded-0" href="{% url 'predict' value.key%}">
-                        View Trained
-                        <i class="fas fa-eye fa-2x"></i>
-                    </a>
-                    <a class="btn btn-sm btn-info shadow-none float-right rounded-0" href="{% url 'train' value.key %}">
-                        ReTrain Model
+<div class="container">
+    <div class="row flex-cente mt-4">
 
-                        <i class="fas fa-running fa-2x"></i>
-                    </a>
-                </div>
+        <div class="col-md-9 m-auto ">
+            <ul class="list-group ">
+                {%for value in stock_list%}
+                <li class="list-group-item hoverable ">
+                    <span class="float-left h5-responsive">
+                        {{value.name}}
+                    </span>
+                    <div class="float-right">
+                        <a class="btn btn-sm btn-primary shadow-none rounded-0 float-left"
+                            href="{% url 'predict' value.key%}">
+                            View Trained
+                            <i class="fas fa-eye fa-2x"></i>
+                        </a>
+                        <a class="btn btn-info btn-sm  shadow-none float-lef rounded-0"
+                            href="{% url 'train' value.key %}" onclick="showGrow('#'+'{{value.key}}');">
+                            ReTrain Model
 
-            </li>
+                            <i class="fas fa-running fa-2x"></i>
 
-            {%empty%}
-            <h5>empty list</h5>
-            {%endfor%}
 
-        </ul>
+                        </a>
+                        <div id="{{value.key}}" class="float-right black" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+
+                    </div>
+
+                </li>
+
+                {%empty%}
+                <h5>empty list</h5>
+                {%endfor%}
+
+            </ul>
+        </div>
+
     </div>
-
 </div>
 
+<script>
+
+    function showGrow(arg) {
+        $(arg).addClass('spinner-grow');
+        //
+        // console.log(arg);
+        // console.log($(arg));
+        //console.log($(arg));
+
+    }
 
 
-
-
-
+</script>
 
 {%endblock%}

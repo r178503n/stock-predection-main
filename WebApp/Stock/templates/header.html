@@ -8,7 +8,6 @@
 <!-- Material Design Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
 
-
 <html lang="en" class="full-height">
 
 <!--Main Navigation-->
@@ -16,24 +15,25 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark black">
         <div class="container text-center">
-            <a class="navbar-brand m-auto" href="#"><strong>Stock Prediction App</strong></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+
+            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>
-            <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Profile</a>
-                    </li>
-                </ul>
-            </div> -->
+            </button> -->
+            <ul class="navbar-nav m-auto">
+                <li class="nav-item ">
+                    <a class="navbar-brand m-aut" href="{% url 'index' %}"><strong>Stock Prediction App</strong></a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <!-- <li class="nav-item">
+                                    <a class="nav-link" href="#">Link</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Profile</a>
+                                </li> -->
+            </ul>
         </div>
     </nav>
 
@@ -43,11 +43,18 @@
 <!--Main Navigation-->
 
 
-<div class="container">
-
-
+<main>
     {%block body%}
 
 
+
+
+
+
     {%endblock%}
-</div>
+</main>
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script> -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>

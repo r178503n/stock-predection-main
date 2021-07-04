@@ -2,6 +2,7 @@
 
 
 {%block body%}
+<div class="container-fluid">
 
 <a href="{% url 'index' %}">Home</a>
 <h3>{{name}}</h3>
@@ -10,6 +11,8 @@
 
 {%load plotly_dash%}
 
-{%plotly_app name="SimpleExample" ratio=1%}
+{%plotly_app name="StockPrediction" ratio=1%}
+
+</div>
 
 {%endblock%}
