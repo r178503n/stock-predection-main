@@ -19,7 +19,8 @@ from .stock_app import *
 stock_context = dict({'stock_list': [
           {'key':'NGM', 'name':'NSE-TATAGLOBAL'},
           {'key':'MSFT','name':'Microsoft'},
-            {'key':'NMS','name':'Facebook'}
+            {'key':'NMS','name':'Facebook'},
+            {'key':'BTI','name':'British American Tobacco'}
 ],'status':None})
 
 def index(request,):

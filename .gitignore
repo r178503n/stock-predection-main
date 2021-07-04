@@ -47,7 +47,7 @@ testem.log
 .DS_Store
 Thumbs.db
 *.sqlite3
-**/static_cdn/
+# **/static_cdn/
 **/dist
 **/webpack-stats-angular.json
 WebApp/ClientApp/.browserslistrc
