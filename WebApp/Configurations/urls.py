@@ -9,7 +9,8 @@ from django.views.generic import RedirectView, TemplateView
 urlpatterns = [
 
    path('admin/', admin.site.urls),
-   path('', include('Stock.urls')),   
+   path('', include('Stock.urls')), 
+   path('api/stock/', include('Stock.urls')),     
    path('django_plotly_dash/', include('django_plotly_dash.urls')),
 ]
 
@@ -22,5 +23,5 @@ urlpatterns += static(settings.STATIC_URL,
                       document_root=settings.STATIC_ROOT)
 
 urlpatterns += [
-# re_path(r'^(?P<path>.*)$', TemplateView.as_view(template_name='angular.html'), name="home"),
+re_path(r'^(?P<path>.*)$', TemplateView.as_view(template_name='angular.html'), name="home"),
 ]

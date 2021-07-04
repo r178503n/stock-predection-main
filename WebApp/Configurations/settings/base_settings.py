@@ -173,13 +173,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-#  Static files
-# WEBPACK_LOADER = {
-#     'DEFAULT': {
-#        'BUNDLE_DIR_NAME': 'dist/',
-#        'STATS_FILE': os.path.join(BASE_DIR,'ClientApp', 'webpack-stats-angular.json'),
-#     }
-# }
+# Static files
+WEBPACK_LOADER = {
+    'DEFAULT': {
+       'BUNDLE_DIR_NAME': 'dist/',
+       'STATS_FILE': os.path.join(BASE_DIR,'ClientApp', 'webpack-stats-angular.json'),
+    }
+}
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
@@ -189,8 +189,8 @@ STATIC_URL = '/static/'
 # create_directory( os.path.join(BASE_DIR, 'static_cdn', 'media_root'))
 
 STATICFILES_DIRS = (
-    # os.path.join(BASE_DIR, 'ClientApp/distro/'),
-    # os.path.join(BASE_DIR, 'ClientApp/distro/dist/', 'static'),
+    os.path.join(BASE_DIR, 'ClientApp/distro/'),
+    os.path.join(BASE_DIR, 'ClientApp/distro/dist/', 'static'),
     os.path.join(BASE_DIR, 'static_cdn', 'media_root'),
 )
 

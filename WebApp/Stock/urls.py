@@ -9,9 +9,10 @@ from django.views.generic import RedirectView, TemplateView
 from . import views
 
 urlpatterns = [
-path('', views.index, name='index'),
+path('list', views.StockList.as_view(), name='list'),
+path('train', views.TrainModelView.as_view(), name='train'),
  path('predict/<name>', views.predictionView, name='predict'),
-  path('train/<name>', views.trainView, name='train'),
+ # path('train/<name>', views.trainView, name='train'),
   #  path('train/<name>', views.TView.as_view(), name='train'),
 
   

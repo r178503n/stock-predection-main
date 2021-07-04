@@ -1,0 +1,70 @@
+<div class="text-center mt-2">
+
+  <span *ngIf="status" class="text-success h5-responsive">{{status.message}}</span>
+
+  <span *ngIf="status" class="text-danger h5-responsive">{{status.message}}</span>
+
+</div>
+
+
+<div class="container">
+  <div class="row flex-cente mt-4">
+
+    <div class="col-md-9 m-auto ">
+      <ul class="list-group ">
+
+        <li class="list-group-item hoverable " *ngFor="let value of stockList">
+          <span class="float-left h5-responsive">
+            {{value.name}}
+          </span>
+          <div class="float-right">
+            <a class="btn btn-sm btn-primary shadow-none rounded-0 float-left" [href]="'/predict/'+value.key"
+              routerLinkActive="router-link-active" 
+              (click)="selectPrediction(value.key)">
+              View Trained
+              <i class="fas fa-eye fa-2x"></i>
+              <div *ngIf="selectedPrediction===value.key" class="spinner-border text-white" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </a>
+            <a class="btn btn-info btn-sm  shadow-none float-lef rounded-0" (click)="trainModel(value.key)">
+              ReTrain Model
+
+              <i class="fas fa-running fa-2x"></i>
+
+
+
+            </a>
+            <div *ngIf="isTraining&&selectedTrain === value.key" class="spinner-grow float-right black" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+
+          </div>
+
+        </li>
+
+        <li class="jumbotron text-center" *ngIf="!stockList">
+          <h5>Empty list</h5>
+        </li>
+
+
+
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- <script>
+
+  function showGrow(arg) {
+    $(arg).addClass('spinner-grow');
+    //
+    // console.log(arg);
+    // console.log($(arg));
+    //console.log($(arg));
+
+  }
+
+
+</script> -->
