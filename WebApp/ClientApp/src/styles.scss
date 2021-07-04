@@ -1,0 +1,46 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "../node_modules/@fortawesome/fontawesome-free/css/all.css";
+@import "../node_modules/@fortawesome/fontawesome-free/css/svg-with-js.css";
+/*
+MDB
+*/
+@import "../node_modules/mdbootstrap/css/bootstrap.min.css";
+@import "../node_modules/mdbootstrap/css/mdb.min.css";
+
+
+/* Prime NG
+*/
+@import "../node_modules/primeicons/primeicons.css";
+@import "../node_modules/primeflex/primeflex.css";
+@import "../node_modules/primeicons/primeicons.css";
+@import "../node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css";
+@import "../node_modules/primeng/resources/primeng.min.css";
+
+/* Sweet Alert*/
+@import "../node_modules/sweetalert2/dist/sweetalert2.min.css";
+@import "../node_modules/@sweetalert2/themes/dark/dark.min.css";
+
+
+
+body {
+  background-color: #ffffff;
+}
+
+
+p {
+  color: black;
+}
+
+
+body {
+  font-family: -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen-Sans,
+    Ubuntu,
+    Cantarell,
+    Helvetica,
+    sans-serif;
+}

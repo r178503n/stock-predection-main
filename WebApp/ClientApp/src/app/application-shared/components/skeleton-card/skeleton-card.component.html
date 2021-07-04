@@ -1,0 +1,22 @@
+<div class="container ">
+    <div class="row">
+        <div *ngFor="let i of [].constructor(iterations)" class="col-lg-4 m-auto co-sm-6  ">
+            <div class="custom-skeleton p-p-4 card shadow-none mt-1 mb-4">
+                <div class="p-d-flex p-mb-3">
+                    <p-skeleton shape="circle" size="4rem" styleClass="p-mr-2 {{color}} {{light}}"></p-skeleton>
+                    <div>
+                        <p-skeleton width="10rem" styleClass="p-mb-2 {{color}} {{light}} "></p-skeleton>
+                        <p-skeleton width="5rem" styleClass="p-mb-2 {{color}} {{light}}"></p-skeleton>
+                        <p-skeleton height=".5rem" styleClass="{{color}} {{light}}"></p-skeleton>
+                    </div>
+                </div>
+                <p-skeleton width="100%"  styleClass="{{color}} {{light}}" height="150px"></p-skeleton>
+                <div class="p-d-flex p-jc-between p-mt-3">
+                    <p-skeleton width="4rem" height="2rem" styleClass="{{color}} {{light}}"></p-skeleton>
+                    <p-skeleton width="4rem" height="2rem" styleClass="{{color}} {{light}}"></p-skeleton>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
