@@ -9,12 +9,12 @@ from django.views.generic import RedirectView, TemplateView
 from . import views
 
 urlpatterns = [
-path('list', views.StockList.as_view(), name='list'),
+path('list', views.StockList.as_view(), name='index'),
 path('train', views.TrainModelView.as_view(), name='train'),
  path('predict/<name>', views.predictionView, name='predict'),
  # path('train/<name>', views.trainView, name='train'),
   #  path('train/<name>', views.TView.as_view(), name='train'),
 
-  
+# re_path(r'^(?P<path>.*)$', TemplateView.as_view(template_name='angular.html'), name="home"),
 ]
 

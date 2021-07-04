@@ -12,7 +12,4 @@
    https://docking-stock-prediction.herokuapp.com/
 
 4. video Link
-   
-
-5. Colab Link
-
+   https://drive.google.com/file/d/1NO0riLydST6L0ttYAZ5AXuamk3Eav_s1/view?usp=sharing

@@ -4,14 +4,14 @@
 {%block body%}
 <div class="container-fluid">
 
-<a href="{% url 'index' %}">Home</a>
-<h3>{{name}}</h3>
+    <!-- <a href="{% url 'index' %}">Home</a> -->
+    <h3>{{name}}</h3>
 
-<hr>
+    <hr>
 
-{%load plotly_dash%}
+    {%load plotly_dash%}
 
-{%plotly_app name="StockPrediction" ratio=1%}
+    {%plotly_app name="StockPrediction" ratio=1%}
 
 </div>
 
