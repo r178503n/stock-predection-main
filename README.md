@@ -1,1 +1,1 @@
-# stock app
+Stock trading app prediction
