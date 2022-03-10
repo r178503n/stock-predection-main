@@ -1,5 +1,5 @@
 {
-    "python.pipenvPath": "WebApp\\.venv\\Scripts\\", // if using pipenv
+    "python.pipenvPath": "WebApp\\.venv\\Scripts\\", 
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
     "python.autoComplete.extraPaths": [
